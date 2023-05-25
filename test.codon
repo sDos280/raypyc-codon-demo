@@ -1,0 +1,4 @@
+from C import InitWindow(int, int, cobj) -> None
+
+title = "hhh"
+InitWindow(100, 100, title.c_str())
