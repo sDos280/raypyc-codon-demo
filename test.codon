@@ -1,4 +1,30 @@
-from C import InitWindow(int, int, cobj) -> None
+Color = Tuple[u8, u8, u8, u8]
 
-title = "hhh"
-InitWindow(100, 100, title.c_str())
+def color(r: int, g: int, b: int, a: int = 255):
+    return (u8(r), u8(g), u8(b), u8(a))
+
+RAYWHITE  = color(255, 255, 255)
+LIGHTGRAY = color(123, 123, 123)
+
+from C import InitWindow(i32, i32, cobj)
+from C import SetTargetFPS(i32)
+from C import WindowShouldClose() -> bool
+from C import BeginDrawing()
+from C import EndDrawing()
+from C import CloseWindow()
+from C import DrawText(cobj, i32, i32, i32, Color)
+from C import ClearBackground(Color)
+
+screen_width = 800
+screen_height = 450
+
+InitWindow(i32(screen_width), i32(screen_height), "raylib [core] example - basic window".ptr)
+SetTargetFPS(i32(60))
+
+while not WindowShouldClose():
+    BeginDrawing()
+    ClearBackground(RAYWHITE)
+    DrawText("Congrats! You created your first window!".ptr, i32(190), i32(200), i32(20), LIGHTGRAY)
+    EndDrawing()
+
+CloseWindow()
